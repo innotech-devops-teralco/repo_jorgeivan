@@ -67,5 +67,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.App }}:${{ inputs.Version }}
+          name: ${{ inputs.App }}.${{ inputs.Version }}
           path: path/${{ inputs.App }}
