@@ -32,4 +32,4 @@ jobs:
       run: |
         curl -s "https://api.github.com/repos/innotech-devops-teralco/repo_jorgeivan/packages/container/python/versions" > app.txt
         cat app.txt
-        
+        gh repo list
