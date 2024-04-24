@@ -7,8 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: read
+      packages: read
     steps:
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh api  /repos/innotech-devops-teralco/repo_jorgeivan/actions/artifacts
+          gh api  /orgs/innotech-devops-teralco/packages?package_type=container
