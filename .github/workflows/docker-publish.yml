@@ -40,16 +40,26 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: ${{ github.actor }}
-          password: ${{ secrets.TOKEN_GH }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
+      
+      - name: Generate Docker Metadata
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=ref,event=tag
+            type=ref,event=pr
+            type=sha,event=branch,prefix=,suffix=,format=short
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v2
         with:
           context: ${{ inputs.App }}
           push: true
-          tags: ${{ inputs.App }}:${{ inputs.Version }}
-          labels: labels
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
   
