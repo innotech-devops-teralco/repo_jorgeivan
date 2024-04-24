@@ -21,6 +21,6 @@ jobs:
     steps:
     - uses: actions/download-artifact@v4
       with:
-        name: ${{ inputs.name }}*
+        name: ${{ inputs.name }}:1.0.0
     - name: Display structure of downloaded files
       run: ls -la
