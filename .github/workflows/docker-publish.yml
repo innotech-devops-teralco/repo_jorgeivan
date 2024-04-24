@@ -48,18 +48,15 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ghcr.io/${{ github.repository }}
-          tags: |
-            type=ref,event=tag
-            type=ref,event=pr
-            type=sha,event=branch,prefix=,suffix=,format=short
+
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v2
         with:
           context: ${{ inputs.App }}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ inputs.App }}:${{ inputs.Version }}
+          labels: labels
           cache-from: type=gha
           cache-to: type=gha,mode=max
   
