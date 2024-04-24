@@ -55,7 +55,7 @@ jobs:
         with:
           context: ${{ inputs.App }}
           push: true
-          tags: ghcr.io/${{ inputs.App }}:${{ inputs.Version }}
+          tags: ghcr.io/${{ github.repository }}/${{ inputs.App }}:${{ inputs.Version }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
