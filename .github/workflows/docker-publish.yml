@@ -47,7 +47,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: ghcr.io/${{ inputs.App }}
 
 
       - name: Build and Push Docker Image
@@ -55,8 +55,8 @@ jobs:
         with:
           context: ${{ inputs.App }}
           push: true
-          tags: ${{ inputs.App }}:${{ inputs.Version }}
-          labels: labels
+          tags: ${{ steps.meta.outputs.tags }}:${{ inputs.Version }}
+          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
   
