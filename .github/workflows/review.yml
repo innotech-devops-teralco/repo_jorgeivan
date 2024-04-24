@@ -19,8 +19,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/download-artifact@v4
-     # with:
-     # name: ${{ inputs.name }}:1.0.0
+    - name: Sign in to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: ghcr.io
     - name: Display structure of downloaded files
-      run: ls -la
+      run: |
+        ls -la
+        docker pull ghcr.io/innotech-devops-teralco/repo_jorgeivan/python:1.0.0
+        
