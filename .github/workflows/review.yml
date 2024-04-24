@@ -28,5 +28,8 @@ jobs:
     - name: Display structure of downloaded files
       run: |
         ls -la
-        docker pull ghcr.io/innotech-devops-teralco/repo_jorgeivan/python:1.0.0
+    - name: Curl
+      run: |
+        curl -s "https://api.github.com/repos/innotech-devops-teralco/repo_jorgeivan/packages/container/python/versions" > app.txt
+        cat app.txt
         
