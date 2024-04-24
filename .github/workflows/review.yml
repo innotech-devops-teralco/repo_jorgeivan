@@ -12,6 +12,8 @@ on:
         options: 
           - python
           - java
+env:
+    GH_TOKEN: ${{ github.token }}          
 
 jobs:
 
