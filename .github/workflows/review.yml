@@ -21,6 +21,6 @@ jobs:
     steps:
     - uses: actions/download-artifact@v4
       with:
-        path: my-artifact
+        name: ${{ inputs.name }}*
     - name: Display structure of downloaded files
-      run: ls -R my-artifact
+      run: ls -la
