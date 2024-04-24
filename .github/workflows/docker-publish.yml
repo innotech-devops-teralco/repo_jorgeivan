@@ -59,4 +59,13 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-  
+      - name: Create files
+        run: |
+          mkdir path
+          cd path
+          echo "Esto es una prueba" > ${{ inputs.App }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.App }}:${{ inputs.Version }}
+          path: path/${{ inputs.App }}
